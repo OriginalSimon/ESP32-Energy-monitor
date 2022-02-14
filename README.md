@@ -33,6 +33,9 @@
 
 Принципиальная схема
 
+Резистор R2 = 33 Ома
+
+![Schematic_Счетчик 3 0_2022-02-14](https://user-images.githubusercontent.com/94782611/153902685-d3e00f8d-ae83-437c-b5f4-f543981a8c6a.png)
 [Schematic_Счетчик 3.0_2022-02-14.pdf](https://github.com/SimonW0rk/ESP32-Energy-monitor/files/8062311/Schematic_.3.0_2022-02-14.pdf)
 
 Монтажная плата
