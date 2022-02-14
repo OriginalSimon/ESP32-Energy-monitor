@@ -31,6 +31,10 @@
 
 ![изображение](https://user-images.githubusercontent.com/94782611/153896403-3878c9dc-cc06-4949-9f7b-9cdad9dd88a4.png)
 
+Принципиальная схема
+
+[Schematic_Счетчик 3.0_2022-02-14.pdf](https://github.com/SimonW0rk/ESP32-Energy-monitor/files/8062311/Schematic_.3.0_2022-02-14.pdf)
+
 Монтажная плата
 
 ![изображение](https://user-images.githubusercontent.com/94782611/153896806-5a3d23cd-d76b-479e-b4a0-95079617ca6e.png)
@@ -42,3 +46,12 @@
 Датчик STC-013-000
 
 ![изображение](https://user-images.githubusercontent.com/94782611/153898662-b9f4f0f9-e09a-4cce-9f98-3da64be6bf8a.png)
+
+Список нужных компонентов:
+- Микроконтролер ESP32;
+- Неинвазивный датчик силы тока 100А STC-013-000;
+- Дисплей SSD1306 OLED 128x64;
+- Датчик температуры и влажности DHT11;
+- Датчика переменного напряжения ZMPT101B
+- Линейный стабилизатор L7805CV
+- Коденсаторы 
