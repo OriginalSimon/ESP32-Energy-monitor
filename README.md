@@ -25,7 +25,7 @@
 
 Локальный веб сервер
 
-![изображение](https://user-images.githubusercontent.com/94782611/153896040-6e44dcd6-2a45-4ca1-b08e-708f5575396f.png)
+![изображение](https://user-images.githubusercontent.com/94782611/154678362-1deff3f1-8407-485f-8860-b62a47340bb0.png)
 
 Дисплей 
 
