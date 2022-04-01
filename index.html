@@ -1,0 +1,162 @@
+<!DOCTYPE html>
+<meta charset="UTF-8">
+<head>
+  <title>DASHBOARD</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta charset="utf-8">
+  <script src="https://kit.fontawesome.com/027df4bff5.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.2/css/all.css" integrity="sha384-fnmOCqbTlWIlj8LyTjo7mOUStjsKC4pOpQbqyi7RrhN7udi9RwhKkMHpvLbHG9Sr" crossorigin="anonymous">
+  <link rel="icon" type="image/x-icon" href="favicon.ico">
+  <style>
+  html { font-family: Arial, Helvetica, sans-serif; display: inline-block;text-align: center; }
+  h1 { font-size: 1.5rem; color: white; }
+  p { font-size: 1.4rem; }
+  .topnav { overflow: hidden; background-color: #0A1128; }
+  body { margin: 0; }
+  .content { padding: 20px; }
+  .card-grid {max-width: 1200px; margin: 0 auto; display: grid; grid-gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .card { background-color: white; box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);}
+  .card-title { font-size: 1.2rem; font-weight: bold; color: #034078}
+  .chart-container { padding-right: 5%; padding-left: 5%;}
+  .reading { font-size: 2.8rem; }
+  .card.temperature { color: #0e7c7b; }
+  .card.humidity { color: #17bebb; }
+  .card.voltage { color: #FFA500; }
+  .card.current { color: #FF4500; }
+  .card.watt { color: #00FA9A; }
+  .card.Cost {  color: #571B7E ; }
+  .card.kWh { color: #6CC417 ; }
+  .card.realPower { color: #52595D ;}
+  .card1 { background-color: white;   box-shadow: 2px 2px 12px 1px  rgba(140,140,140,.5); }
+  .cards1 { max-width: 1200px; margin: 0 auto;   display: grid; grid-gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .card2 { background-color: white; box-shadow: 2px 2px 12px 1px rgba(140,140,140,.5);}
+  .cards2 { max-width: 1200px; margin: 12 auto; display: grid; grid-gap: 2rem; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); }
+  .card2.temp{ color: #52595D ; }
+</style>
+</head>
+
+<script>
+var connection = new WebSocket('ws://'+location.hostname+':81/');
+var temperatura = 0;
+var temperatura_farn = 0;
+var humidity = 0;
+connection.onmessage = function(event){
+
+  var SensorData = event.data;
+  var data = JSON.parse(SensorData);
+
+  temperatura = data.temp;
+  humidity = data.hum;
+  temperatura_farn = data.farn;
+
+  rpower = data.rPower;
+  apower = data.aPower;
+  voltage = data.Voltage;
+  current = data.Current;
+  kwh = data.kWh_V;
+  cost = data.Cost_V;
+
+  document.getElementById("temp_meter").value = temperatura;
+  document.getElementById("temp_value").innerHTML = temperatura;
+  document.getElementById("hum_meter").value = humidity;
+  document.getElementById("hum_value").innerHTML = humidity;
+  document.getElementById("temp_farn_meter").value = temperatura_farn;
+  document.getElementById("temp_farn_value").innerHTML = temperatura_farn;
+
+  document.getElementById("rpower_value").innerHTML = rpower;
+  document.getElementById("apower_value").innerHTML = apower;
+  document.getElementById("voltage_value").innerHTML = voltage;
+  document.getElementById("current_value").innerHTML = current;
+  document.getElementById("kwh_value").innerHTML = kwh;
+  document.getElementById("cost_value").innerHTML = cost;
+
+}
+</script>
+
+<body>
+  <div class="topnav">
+    <h1>ENERGY CONTROLLER</h1>
+     <h1> <label class="inset" for="time">TIME</label>
+          <input type="text" id="time" readonly></h1>
+  </div>
+  <div class="content">
+    <div class="cards1">
+      <div class="card voltage">
+        <h4><i class="fas fa-bolt"></i> VOLTAGE</h4><p><span class="reading"><span id="voltage_value" style="display: inline-block;"></span> V</span></p>
+      </div>
+      <div class="card current">
+        <h4><i class="fas fa-car-battery"></i> CURRENT </h4><p><span class="reading"><span id="current_value" style="display: inline-block;"></span> A </span></p>
+      </div>
+       <div class="card realPower">
+        <h4><i class="fa-solid fa-plug"></i> REAL POWER </h4><p><span class="reading"><span id="rpower_value" style="display: inline-block;"></span> W </span></p>
+      </div>
+       <div class="card kWh">
+        <h4><i class="fa-solid fa-arrow-trend-up"></i> kWh </h4><p><span class="reading"><span id="kwh_value" style="display: inline-block;"></span> kWh </span></p>
+      </div>
+      <div class="card watt">
+        <h4><i class="fab fa-accessible-icon"></i> POWER </h4><p><span class="reading"><span id="apower_value" style="display: inline-block;"></span> W </span></p>
+      </div>
+      <div class="card Cost">
+        <h4><i class="fa-solid fa-coins"></i> COST </h4><p><span class="reading"><span id="cost_value" style="display: inline-block;"></span> UAH </span></p>
+      </div>
+      <div class="card temperature">
+        <h4><i class="fas fa-thermometer-half"></i> TEMPERATURE</h4><p><span class="reading"><span id="temp_value" style="display: inline-block;"></span> °C</span></p>
+        <h4><meter value="2" min="0" max="100" id="temp_meter"> </meter></h4>
+      </div>
+      <div class="card temperature">
+        <h4><i class="fas fa-thermometer-half"></i> TEMPERATURE</h4><p><span class="reading"><span id="temp_farn_value" style="display: inline-block;"></span> &deg;F</span></p>
+        <h4><meter value="2" min="32" max="212" id="temp_farn_meter"> </meter></h4>
+      </div>
+      <div class="card humidity">
+        <h4><i class="fas fa-tint"></i> HUMIDITY</h4><p><span class="reading"><span id="hum_value" style="display: inline-block;"></span> &percnt;</span></p>
+        <h4><meter value="2" min="0" max="100" id="hum_meter"> </meter> </h4>
+      </div>
+    </div>
+  </div>
+  <div class="content">
+    <div class="card-grid">
+      <div class="card">
+        <p class="card-title">Chars</p>
+        <div id="chart-temperature" class="chart-container"></div>
+      </div>
+    </div>
+  </div>
+<script>
+
+// Инициализация отображения текущего времени
+//----------------------------------------------------------------------------
+var xhttp = new XMLHttpRequest();
+var time;
+window.addEventListener('load', onLoad);
+function onLoad(event) {
+    initTime();
+}
+// ----------------------------------------------------------------------------
+
+// ----------------------------------------------------------------------------
+
+function initTime() {
+    time = document.getElementById('time');
+    updateTime();
+    // a timing event manager is initialized
+    // which must be triggered every second to refresh
+    // the display of the current time
+    setInterval(updateTime, 1000);
+}
+
+function updateTime() {
+    let now    = new Date();
+    let h      = now.getHours();
+    let m      = now.getMinutes();
+    let s      = now.getSeconds();
+    time.value = `${normalize(h)}:${normalize(m)}:${normalize(s)}`;
+}
+
+function normalize(digit) {
+    return (digit < 10 ? '0' : '') + digit;
+}
+//---------------------------------------------------------------------------
+</script>
+</html>
