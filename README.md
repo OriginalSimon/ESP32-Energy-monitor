@@ -26,7 +26,7 @@
 - 
 Локальный веб сервер(Будут изменения) 
 
-![изображение](https://user-images.githubusercontent.com/94782611/154678362-1deff3f1-8407-485f-8860-b62a47340bb0.png)
+![изображение](https://user-images.githubusercontent.com/94782611/161428123-c4444cdb-05bc-4722-99a8-cc872a76d040.png)
 
 Дисплей(Будут изменения) 
 
